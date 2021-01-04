@@ -54,7 +54,7 @@ export const FirebaseState = ({children}) => {
 
     }
     const removeNote = async (id) => {
-        await axios.delete(`${url}/notes/${id}`)
+        await axios.delete(`${url}/notes/${id}`, {withCredentials: true})
         dispatch({
             type: REMOVE_NOTE,
             payload: id

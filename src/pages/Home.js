@@ -6,7 +6,7 @@ import {Preloader} from "../components/Preloader";
 
 export const Home = () => {
 
-    const {loading, notes, fetchNotes} = useContext(FirebaseContext)
+    const {loading, notes, fetchNotes, removeNote} = useContext(FirebaseContext)
 
     useEffect(() => {
         fetchNotes()
@@ -18,7 +18,7 @@ export const Home = () => {
             <Form/>
             {loading
                 ? <Preloader/>
-                : <Notes notes={notes}/>
+                : <Notes notes={notes} onRemove={removeNote}/>
             }
         </>
     )

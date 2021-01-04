@@ -5,19 +5,22 @@ import {About} from "./pages/About";
 import {Navbar} from "./components/Navbar";
 import {Alert} from "./components/Alert";
 import {AlertState} from "./context/alert/AlertState";
+import {FirebaseState} from "./context/firebase/FirebaseState";
 
 const App = () => {
     return (
-        <AlertState>
-            <Navbar/>
-            <div className="container pt-4">
-                <Alert />
-                <Switch>
-                    <Route path='/' exact render={() => <Home/>}/>
-                    <Route path='/about' render={() => <About/>}/>
-                </Switch>
-            </div>
-        </AlertState>
+        <FirebaseState>
+            <AlertState>
+                <Navbar/>
+                <div className="container pt-4">
+                    <Alert/>
+                    <Switch>
+                        <Route path='/' exact render={() => <Home/>}/>
+                        <Route path='/about' render={() => <About/>}/>
+                    </Switch>
+                </div>
+            </AlertState>
+        </FirebaseState>
     )
 }
 

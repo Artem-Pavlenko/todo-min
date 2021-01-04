@@ -1,17 +1,25 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import {Form} from "../components/Form";
 import {Notes} from "../components/Notes";
+import {FirebaseContext} from "../context/firebase/firebaseContext";
+import {Preloader} from "../components/Preloader";
 
 export const Home = () => {
 
-    const notes = new Array(3)
-        .fill('')
-        .map((_, i) => ({id: i, title: `Note ${i + 1}`}))
+    const {loading, notes, fetchNotes} = useContext(FirebaseContext)
+
+    useEffect(() => {
+        fetchNotes()
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <>
             <Form/>
-            <Notes notes={notes}/>
+            {loading
+                ? <Preloader/>
+                : <Notes notes={notes}/>
+            }
         </>
     )
 }
